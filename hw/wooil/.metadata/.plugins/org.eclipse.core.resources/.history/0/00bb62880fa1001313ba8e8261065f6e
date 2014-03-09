@@ -1,0 +1,31 @@
+package com.mewards.hw3;
+
+public class Inch extends Fragment implements OnClickListener {
+	 
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+            Bundle savedInstanceState) {
+ 
+        View v = inflater.inflate(R.layout.onefragment, container, false);
+ 
+        Button button = (Button) v.findViewById(R.id.bt_ok);
+        button.setOnClickListener(this);
+ 
+        return v;
+    }
+ 
+    @Override
+    public void onClick(View v) {
+ 
+        switch (v.getId()) {
+ 
+        case R.id.bt_ok:
+            Toast.makeText(getActivity(), "OneFragment", Toast.LENGTH_SHORT)
+                    .show();
+            break;
+ 
+        }
+ 
+    }
+ 
+}

@@ -1,0 +1,84 @@
+package com.mewards.hw3;
+
+import android.os.Bundle;
+import android.app.Activity;
+import android.support.v4.app.FragmentActivity;
+import android.view.Menu;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.TextView;
+
+public class MainActivity extends FragmentActivity implements OnClickListener {
+
+	int currentFragment;
+	public final static int FRAGMENT_CM = 0;
+	public final static int FRAGMENT_INCH = 1;
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_main);
+
+		TextView cmText = (TextView) findViewById(R.id.cm);
+		cmText.setOnClickListener(this);
+		TextView inchText = (TextView) findViewById(R.id.inch);
+		inchText.setOnClickListener(this);
+		currentFragment = FRAGMENT_CM;
+
+	}
+
+	public void fragmentReplace(int reqNewFragmentIndex) {
+
+		Fragment newFragment = null;
+
+		Log.d(TAG, "fragmentReplace " + reqNewFragmentIndex);
+
+		newFragment = getFragment(reqNewFragmentIndex);
+
+		// replace fragment
+		final FragmentTransaction transaction = getSupportFragmentManager()
+				.beginTransaction();
+
+		transaction.replace(R.id.ll_fragment, newFragment);
+
+		// Commit the transaction
+		transaction.commit();
+
+	}
+
+	private Fragment getFragment(int idx) {
+		Fragment newFragment = null;
+
+		switch (idx) {
+		case FRAGMENT_ONE:
+			newFragment = new OneFragment();
+			break;
+		case FRAGMENT_TWO:
+			newFragment = new TwoFragment();
+			break;
+		case FRAGMENT_THREE:
+			newFragment = new ThreeFragment();
+			break;
+
+		default:
+			Log.d(TAG, "Unhandle case");
+			break;
+		}
+
+		return newFragment;
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.main, menu);
+		return true;
+	}
+
+	@Override
+	public void onClick(View v) {
+		// TODO Auto-generated method stub
+
+	}
+
+}
