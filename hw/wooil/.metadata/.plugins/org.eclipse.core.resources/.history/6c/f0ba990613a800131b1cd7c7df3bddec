@@ -1,0 +1,48 @@
+package com.mewards.hw5;
+
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.app.Activity;
+import android.view.Menu;
+import android.widget.TextView;
+
+public class MainActivity extends Activity {
+
+	int no1, no2, no3, no4 = 0;
+	TextView txt1, txt2, txt3, txt4;
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_main);
+
+		txt1 = (TextView) findViewById(R.id.no1);
+		txt2 = (TextView) findViewById(R.id.no2);
+		txt3 = (TextView) findViewById(R.id.no3);
+		txt4 = (TextView) findViewById(R.id.no4);
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.main, menu);
+		return true;
+	}
+
+	class IncThread extends Thread {
+		Handler handler;
+		int no;
+
+		public IncThread(int no) {
+			this.no = no;
+		}
+
+		public void run() {
+			while (true) {
+				no++;
+			}
+		}
+
+	}
+}
