@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 public class MainActivity extends Activity implements OnClickListener {
 
-	int no1 = 0, no2 = 0, no3 = 0, no4 = 0;
+	int no1, no2, no3, no4 = 0;
 	TextView txt1, txt2, txt3, txt4;
 	IncThread thr1, thr2, thr3, thr4;
 
@@ -26,11 +26,6 @@ public class MainActivity extends Activity implements OnClickListener {
 		txt2 = (TextView) findViewById(R.id.no2);
 		txt3 = (TextView) findViewById(R.id.no3);
 		txt4 = (TextView) findViewById(R.id.no4);
-		
-		txt1.setText(no1 + "");
-		txt2.setText(no2 + "");
-		txt3.setText(no3 + "");
-		txt4.setText(no4 + "");
 
 		Button btn = (Button) findViewById(R.id.button1);
 		btn.setOnClickListener(this);
@@ -87,9 +82,9 @@ public class MainActivity extends Activity implements OnClickListener {
 		case R.id.button1:
 
 			thr1.run();
-			// thr2.run();
-			// thr3.run();
-			// thr4.run();
+//			thr2.run();
+//			thr3.run();
+//			thr4.run();
 			break;
 		}
 	}

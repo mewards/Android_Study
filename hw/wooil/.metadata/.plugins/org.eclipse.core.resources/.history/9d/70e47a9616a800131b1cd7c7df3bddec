@@ -26,7 +26,6 @@ public class MainActivity extends Activity implements OnClickListener {
 		txt2 = (TextView) findViewById(R.id.no2);
 		txt3 = (TextView) findViewById(R.id.no3);
 		txt4 = (TextView) findViewById(R.id.no4);
-		
 		txt1.setText(no1 + "");
 		txt2.setText(no2 + "");
 		txt3.setText(no3 + "");
