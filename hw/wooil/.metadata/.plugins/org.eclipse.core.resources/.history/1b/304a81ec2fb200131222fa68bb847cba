@@ -1,0 +1,142 @@
+package com.mewards.hw6;
+
+import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+
+public class MainActivity extends FragmentActivity implements OnClickListener {
+
+	Button btn1, btn2, btn3, btn4;
+	static int flag;
+	String msg;
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_main);
+
+		btn1 = (Button) findViewById(R.id.btn1);
+		btn2 = (Button) findViewById(R.id.btn2);
+		btn3 = (Button) findViewById(R.id.btn3);
+		btn4 = (Button) findViewById(R.id.btn4);
+
+		btn1.setOnClickListener(this);
+		btn2.setOnClickListener(this);
+		btn3.setOnClickListener(this);
+		btn4.setOnClickListener(this);
+	}
+
+	@Override
+	public void onClick(View v) {
+		switch (v.getId()) {
+		case R.id.btn1:
+			showWindow();
+			flag = 1;
+			break;
+		case R.id.btn2:
+			showWindow();
+			flag = 2;
+			break;
+		case R.id.btn3:
+			showWindow();
+			flag = 3;
+			break;
+		case R.id.btn4:
+			showWindow();
+			flag = 4;
+			break;
+		}
+	}
+
+	void showWindow() {
+		FragmentManager fm = getSupportFragmentManager();
+		FragmentTransaction tr = fm.beginTransaction();
+		Fragment prev = fm.findFragmentByTag("dialog");
+		if (prev != null) {
+			tr.remove(prev);
+		}
+		Bundle args = new Bundle();
+		args.putInt("num", flag);
+		MsgDialog dialog = new MsgDialog();
+		dialog.setArguments(args);
+		dialog.show(tr, "dialog");
+	}
+
+	public static class FragmentTest extends Fragment {
+		public View onCreateView(LayoutInflater inflator, ViewGroup container,
+				Bundle savedInstanceState) {
+			View root = inflator.inflate(R.layout.each, container, false);
+			TextView msg = (TextView) root.findViewById(R.id.contentText);
+			Bundle args = getArguments();
+
+			if (args != null) {
+				String text = args.getString("text");
+				msg.setText(text);
+			}
+			return root;
+		}
+	}
+
+	public static class MsgDialog extends DialogFragment implements
+			OnClickListener {
+
+		EditText input;
+		int num;
+
+		public View onCreateView(LayoutInflater inflator, ViewGroup container,
+				Bundle savedInstanceState) {
+			View root = inflator.inflate(R.layout.dialog, container, false);
+			Button enterBtn = (Button) root.findViewById(R.id.enterBtn);
+			input = (EditText) root.findViewById(R.id.input);
+			Bundle args = getArguments();
+			if (args != null) {
+				num = args.getInt("id");
+			}
+			enterBtn.setOnClickListener(this);
+			return root;
+		}
+
+		@Override
+		public void onClick(View v) {
+			switch (v.getId()) {
+			case R.id.enterBtn:
+				String text = input.getText().toString();
+				Bundle args = new Bundle();
+				args.putString("text", text);
+
+				FragmentTest fragment = new FragmentTest();
+				fragment.setArguments(args);
+				FragmentManager fm = getFragmentManager();
+				FragmentTransaction tr = fm.beginTransaction();
+				Fragment prev = fm.findFragmentByTag("dialog");
+				if (prev != null) {
+					tr.remove(prev);
+				}
+				switch(flag){
+				case 1:
+					tr.add(R.id.fragment1, fragment).commit();
+					break;
+				case 2:
+					tr.add(R.id.fragment2, fragment).commit();
+					break;
+				case 3:
+					tr.add(R.id.fragment3, fragment).commit();
+					break;
+				case 4:
+					tr.add(R.id.fragment4, fragment).commit();
+					break;
+				}
+			}
+		}
+	}
+}

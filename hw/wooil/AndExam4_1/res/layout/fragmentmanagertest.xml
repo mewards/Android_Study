@@ -17,6 +17,7 @@
 	android:onClick="mOnClick"
 	android:text="Remove"
 	/>
+
 <Button
 	android:id="@+id/btnreplace"  
 	android:layout_width="wrap_content" 
