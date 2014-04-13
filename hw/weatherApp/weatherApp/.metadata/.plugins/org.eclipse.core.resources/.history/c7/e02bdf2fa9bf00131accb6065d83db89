@@ -1,0 +1,11 @@
+package com.mewards.weatherapp;
+
+import android.os.AsyncTask;
+
+public class QueryAPI {
+	AsyncTask<Void, Integer, Void> qTask = new AsyncTask<Void, Integer, Void>(){
+		
+		
+	}
+	
+}

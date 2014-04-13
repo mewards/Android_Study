@@ -1,0 +1,3 @@
+INDEX VERSION 1.126
+/Users/wooil/Documents/weatherApp/.metadata/.plugins/org.eclipse.jst.jsp.core/jspsearch/1349576502.index
+/WeatherServer/src

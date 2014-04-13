@@ -1,5 +1,6 @@
 package com.mewards.hw6;
 
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
@@ -22,6 +23,8 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		SQLiteDatabase db;
+		db.insert
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
@@ -121,21 +124,24 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 				FragmentManager fm = getFragmentManager();
 				FragmentTransaction tr = fm.beginTransaction();
 				Fragment prev = fm.findFragmentByTag("dialog");
+				FragmentManager fm2 = getFragmentManager();
+				FragmentTransaction tr2 = fm2.beginTransaction();
+				
 				if (prev != null) {
-					tr.remove(prev);
+					tr.remove(prev).commit();
 				}
 				switch(flag){
 				case 1:
-					tr.add(R.id.fragment1, fragment).commit();
+					tr2.replace(R.id.fragment1, fragment).addToBackStack(null).commit();
 					break;
 				case 2:
-					tr.add(R.id.fragment2, fragment).commit();
+					tr2.replace(R.id.fragment2, fragment).addToBackStack(null).commit();
 					break;
 				case 3:
-					tr.add(R.id.fragment3, fragment).commit();
+					tr2.replace(R.id.fragment3, fragment).addToBackStack(null).commit();
 					break;
 				case 4:
-					tr.add(R.id.fragment4, fragment).commit();
+					tr2.replace(R.id.fragment4, fragment).addToBackStack(null).commit();
 					break;
 				}
 			}

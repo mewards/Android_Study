@@ -1,0 +1,45 @@
+package com.mewards.weatherapp;
+
+import java.io.IOException;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.params.BasicHttpParams;
+import org.apache.http.params.HttpConnectionParams;
+import org.apache.http.params.HttpParams;
+
+import android.os.AsyncTask;
+
+public class QueryAPI {
+
+	public String test() {
+		AsyncTask<Void, Integer, Void> qTask = new AsyncTask<Void, Integer, Void>() {
+			HttpPost request;
+			HttpResponse response;
+
+			@Override
+			protected Void doInBackground(Void... p) {
+				try {
+					HttpParams params = new BasicHttpParams();
+					HttpConnectionParams.setConnectionTimeout(params, 10000);
+
+					DefaultHttpClient client = new DefaultHttpClient(params);
+					request = new HttpPost("http://14.37.37.161:8080/main2.xml");
+
+					response = client.execute(request);
+				} catch (ClientProtocolException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+			}
+
+		};
+		return null;
+	}
+}

@@ -1,0 +1,18 @@
+package com.mewards.weatherapp;
+
+import android.os.AsyncTask;
+
+public class QueryAPI {
+
+	public void test() {
+		AsyncTask<Void, Integer, Void> qTask = new AsyncTask<Void, Integer, Void>() {
+
+			@Override
+			protected Void doInBackground(Void... params) {
+				// TODO Auto-generated method stub
+				return null;
+			}
+
+		};
+	}
+}
